@@ -52,6 +52,7 @@ class UsersController < ApplicationController
       redirect_to @user
       # Handle a successful update.
     else
+      byebug
       render 'edit'
     end
   end
