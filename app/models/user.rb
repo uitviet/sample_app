@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token
   before_save { self.email = email.downcase }
