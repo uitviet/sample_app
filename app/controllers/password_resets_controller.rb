@@ -1,13 +1,10 @@
-  # frozen_string_literal: true
+# frozen_string_literal: true
 
 class PasswordResetsController < ApplicationController
   before_action :get_user, only: %i[edit update]
   before_action :valid_user, only: %i[edit ipdate]
   before_action :check_expiration, only: %i[edit update]
   def new; end
-
-
-
 
   def create
     @user = User.find_by(email: params[:password_reset][:email].downcase)
@@ -49,8 +46,8 @@ class PasswordResetsController < ApplicationController
   end
 
   def valid_user
-    unless (@user && @user.activated? &&
-           @user.authenticated?(:reset, params[:id]))
+    unless @user&.activated? &&
+           @user&.authenticated?(:reset, params[:id])
       redirect_to root_url
     end
   end
@@ -62,4 +59,3 @@ class PasswordResetsController < ApplicationController
     end
   end
 end
-
